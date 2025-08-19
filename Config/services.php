@@ -17,4 +17,5 @@ return function (ContainerConfigurator $configurator): void {
     $services->load('MauticPlugin\\LeuchtfeuerCustomNavlinksBundle\\', '../')
         ->exclude('../{'.implode(',', array_merge(MauticCoreExtension::DEFAULT_EXCLUDES, $excludes)).'}');
 
+    $services->load('MauticPlugin\\LeuchtfeuerCustomNavlinksBundle\\Entity\\', '../Entity/*Repository.php');
 };

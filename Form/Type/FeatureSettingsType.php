@@ -14,14 +14,6 @@ class FeatureSettingsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('sub_form', MenuItemType::class, [
-                'label' => 'sub_form',
-                'required' => true,
-                'row_attr' => ['class' => 'col-md-3'],
-                'attr' => ['class' => 'form-control'],
-            ]);
-
 /*        $builder
             ->add('name_1', TextType::class, [
                 'label' => 'Name',

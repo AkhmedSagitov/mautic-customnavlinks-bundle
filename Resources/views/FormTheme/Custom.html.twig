@@ -1,28 +1,20 @@
 {% block feature_settings_row %}
-<script>
-    fetch('/menuitem')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text(); // Get HTML as text
-        })
-        .then(html => {
-            console.log('Fetched HTML:', html);
+    <div id="menu-container"></div>
 
-            // Optional: parse the HTML into a DOM object
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-
-            // Example: extract all menu item links
-            const menuItems = doc.querySelectorAll('a'); // adjust selector based on HTML structure
-            menuItems.forEach(item => {
-                console.log(item.textContent, item.href);
+    <script>
+        fetch('/s/menuitem')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // get response as text
+            })
+            .then(html => {
+                const container = document.getElementById('menu-container');
+                container.innerHTML = html; // insert HTML directly
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
             });
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-        });
-</script>
- asdasdasdasdas dasdsadasdasdsa‚
+    </script>
 {% endblock %}

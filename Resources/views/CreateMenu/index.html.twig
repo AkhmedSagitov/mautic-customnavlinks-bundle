@@ -1,11 +1,30 @@
 {% extends '@MauticCore/Default/content.html.twig' %}
 
-
 {% block headerTitle %}{% endblock %}
 
 {% block content %}
-    <div class="pa-md">
-        <h1>{{ message }}</h1>
+
+    <div class="container">
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>{{ 'leuchtfeuer.customnavlinks.menuitem.name'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menuItem in menuItems %}
+                    <tr>
+                        <td>{{ menuItem.name }}</td>
+                    <form method="post" action="{{ path('mautic_menu_item_edit', {'id': menuItem.id}) }}">
+                        <input type="text" name="menu_item_name" value="{{ menuItem.name }}" class="form-control" />
+                        <button type="submit" class="btn btn-primary btn-sm">{{ 'mautic.core.form.save'|trans }}</button>
+                    </form>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
+
 
