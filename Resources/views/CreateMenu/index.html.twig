@@ -5,25 +5,29 @@
 {% block content %}
 
     <div class="container">
-
-        <table class="table table-striped">
-            <thead>
+        <form method="post">
+            <table border="1" cellpadding="5">
+                <thead>
                 <tr>
-                    <th>{{ 'leuchtfeuer.customnavlinks.menuitem.name'|trans }}</th>
+                    <th>ID</th>
+                    <th>Name</th>
                 </tr>
-            </thead>
-            <tbody>
-                {% for menuItem in menuItems %}
+                </thead>
+                <tbody>
+                {% for item in menu_items %}
                     <tr>
-                        <td>{{ menuItem.name }}</td>
-                    <form method="post" action="{{ path('mautic_menu_item_edit', {'id': menuItem.id}) }}">
-                        <input type="text" name="menu_item_name" value="{{ menuItem.name }}" class="form-control" />
-                        <button type="submit" class="btn btn-primary btn-sm">{{ 'mautic.core.form.save'|trans }}</button>
-                    </form>
+                        <td>{{ item.id }}
+                            <input type="hidden" name="items[{{ item.id }}][id]" value="{{ item.id }}">
+                        </td>
+                        <td>
+                            <input type="text" name="items[{{ item.id }}][name]" value="{{ item.name }}">
+                        </td>
                     </tr>
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+            <button type="submit">Speichern</button>
+        </form>
     </div>
 {% endblock %}
 

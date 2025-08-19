@@ -12,18 +12,29 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MenuItemController extends CommonController
 {
-
-    public function indexAction(): Response
+    public function indexAction(Request $request, EntityManagerInterface $em): Response
     {
-        $items = $this->getDoctrine()->getRepository(MenuItem::class)->findAll();
+        $menuItems = $em->getRepository(MenuItem::class)->findAll();
 
-        return $this->delegateView([
-            'viewParameters'  => [
-                'menuItems'  => $items,
-            ],
-            'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
+        if ($request->isMethod('POST')) {
+            $itemsData = $request->request->get('items', []);
+            foreach ($itemsData as $id => $data) {
+                $item = $em->getRepository(MenuItem::class)->find($id);
+                if ($item) {
+                    $item->setName($data['name']);
+                    $em->persist($item);
+                }
+            }
+            $em->flush();
+
+            return $this->redirectToRoute('menuitem');
+        }
+
+        return $this->render('@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig', [
+            'menu_items' => $menuItems,
         ]);
     }
+
 
     public function newAction(Request $request, EntityManagerInterface $em): Response
     {
