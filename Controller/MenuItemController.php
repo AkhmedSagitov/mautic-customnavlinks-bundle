@@ -6,25 +6,39 @@ namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Mautic\CoreBundle\Controller\CommonController;
 use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Entity\MenuItem;
+use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Entity\MenuItemRepository;
 use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Form\Type\MenuItemType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MenuItemController extends CommonController
 {
-    public function indexAction(Request $request, EntityManagerInterface $em): Response
+    public function indexAction(Request $request, EntityManagerInterface $em, MenuItemRepository $menuItemRepository): Response
     {
-        $menuItems = $em->getRepository(MenuItem::class)->findAll();
+        $menuItems = $menuItemRepository->findAll();
+
+        $form = $this->createFormBuilder($menuItems)
+            ->getForm();
 
         if ($request->isMethod('POST')) {
+
             $itemsData = $request->request->get('items', []);
+
             foreach ($itemsData as $id => $data) {
+
                 $item = $em->getRepository(MenuItem::class)->find($id);
+
                 if ($item) {
                     $item->setName($data['name']);
+                    $item->setLabel($data['label']);
+                    $item->setSortOrder((int)$data['sortOrder']);
+                    $item->setUrl($data['url']);
+                    $item->setType($data['type']);
+
                     $em->persist($item);
                 }
             }
+
             $em->flush();
 
             return $this->redirectToRoute('menuitem');
@@ -32,7 +46,7 @@ class MenuItemController extends CommonController
 
         return $this->delegateView([
             'viewParameters'  => [
-                'menu_items' => $menuItems,
+                'form' => $form->createView(),
             ],
             'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
         ]);

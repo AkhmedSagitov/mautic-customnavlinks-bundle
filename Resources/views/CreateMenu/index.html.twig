@@ -4,31 +4,47 @@
 
 {% block content %}
 
-    <div class="container">
-        <form method="post">
-            <table border="1" cellpadding="5">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for item in menu_items %}
-                    <tr>
-                        <td>{{ item.id }}
-                            <input type="hidden" name="items[{{ item.id }}][id]" value="{{ item.id }}">
-                        </td>
-                        <td>
-                            <input type="text" name="items[{{ item.id }}][name]" value="{{ item.name }}">
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <button type="submit">Speichern</button>
-        </form>
-    </div>
+    {{ form_start(form) }}
+
+        <div class="container">
+            {% for item in form.vars.data %}
+                <div class="border-bottom py-3 mb-3">
+                    <input type="hidden" name="items[{{ item.id }}][id]" value="{{ item.id }}">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="items[{{ item.id }}][name]" value="{{ item.name }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Label</label>
+                            <input type="text" class="form-control" name="items[{{ item.id }}][label]" value="{{ item.label }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Sort Order</label>
+                            <input type="number" class="form-control" name="items[{{ item.id }}][sortOrder]" value="{{ item.sortOrder }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label>URL</label>
+                            <input type="text" class="form-control" name="items[{{ item.id }}][url]" value="{{ item.url }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label>Type</label>
+                            <select class="form-select" name="items[{{ item.id }}][type]">
+                                <option value="blank" {% if item.type == 'blank' %}selected{% endif %}>Blank</option>
+                                <option value="iFrame" {% if item.type == 'iFrame' %}selected{% endif %}>iFrame</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary mt-8">Speichern</button>
+        </div>
+
+    {{ form_end(form) }}
+
 {% endblock %}
 
 
