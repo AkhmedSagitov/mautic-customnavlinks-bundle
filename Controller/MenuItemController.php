@@ -30,7 +30,7 @@ class MenuItemController extends CommonController
 
                 if ($item) {
                     $item->setName($data['name']);
-                    $item->setLabel($data['label']);
+                   // $item->setLabel($data['label']);
                     $item->setSortOrder((int)$data['sortOrder']);
                     $item->setUrl($data['url']);
                     $item->setType($data['type']);
@@ -94,18 +94,16 @@ class MenuItemController extends CommonController
     }
 
 
-    public function deleteAction(Request $request, int $id, EntityManagerInterface $em, MenuItemRepository $menuItemRepository): Response
+    public function deleteAction(Request $request, int $id = null, EntityManagerInterface $em, MenuItemRepository $menuItemRepository): Response
     {
         $menuItem = $menuItemRepository->find($id);
 
         if (!$menuItem) {
             throw $this->createNotFoundException('MenuItem not found.');
         }
-        if ($this->isCsrfTokenValid('delete'.$menuItem->getId(), $request->request->get('_token'))) {
             $em->remove($menuItem);
             $em->flush();
-        }
 
-        return $this->redirectToRoute('mautic_menu_item_index');
+        return $this->redirectToRoute('menuitem');
     }
 }

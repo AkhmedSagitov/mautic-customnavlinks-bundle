@@ -2,7 +2,6 @@
 
 namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Form\Type;
 
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Entity\MenuItem;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
