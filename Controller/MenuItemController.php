@@ -30,8 +30,11 @@ class MenuItemController extends CommonController
             return $this->redirectToRoute('menuitem');
         }
 
-        return $this->render('@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig', [
-            'menu_items' => $menuItems,
+        return $this->delegateView([
+            'viewParameters'  => [
+                'menu_items' => $menuItems,
+            ],
+            'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
         ]);
     }
 
