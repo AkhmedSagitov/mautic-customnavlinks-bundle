@@ -50,6 +50,10 @@ return [
                 'path'       => '/createmenuitem',
                 'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::newAction',
             ],
+            'deletemenuitem' => [
+                'path'       => '/deletemenuitem',
+                'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::deleteAction',
+            ],
         ],
     ],
 ];

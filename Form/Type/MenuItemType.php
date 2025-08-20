@@ -22,7 +22,7 @@ class MenuItemType extends AbstractType
                     'Blank' => 'blank',
                     'iFrame' => 'iFrame',
                 ],
-                'placeholder' => 'Select type', // optional
+                'placeholder' => 'Select type',
             ]);
         ;
     }

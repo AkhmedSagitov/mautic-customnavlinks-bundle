@@ -94,14 +94,13 @@ class MenuItemController extends CommonController
     }
 
 
-    public function deleteAction(Request $request, int $id, EntityManagerInterface $em): Response
+    public function deleteAction(Request $request, int $id, EntityManagerInterface $em, MenuItemRepository $menuItemRepository): Response
     {
-        $menuItem = $em->getRepository(MenuItem::class)->find($id);
+        $menuItem = $menuItemRepository->find($id);
 
         if (!$menuItem) {
             throw $this->createNotFoundException('MenuItem not found.');
         }
-
         if ($this->isCsrfTokenValid('delete'.$menuItem->getId(), $request->request->get('_token'))) {
             $em->remove($menuItem);
             $em->flush();
