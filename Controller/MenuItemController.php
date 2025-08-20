@@ -94,7 +94,7 @@ class MenuItemController extends CommonController
     }
 
 
-    public function deleteAction(Request $request, int $id = null, EntityManagerInterface $em, MenuItemRepository $menuItemRepository): Response
+    public function deleteAction(int $id, EntityManagerInterface $em, MenuItemRepository $menuItemRepository): Response
     {
         $menuItem = $menuItemRepository->find($id);
 
@@ -104,6 +104,6 @@ class MenuItemController extends CommonController
             $em->remove($menuItem);
             $em->flush();
 
-        return $this->redirectToRoute('menuitem');
+        return $this->json(['status' => 'success']);
     }
 }
