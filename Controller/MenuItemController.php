@@ -52,27 +52,19 @@ class MenuItemController extends CommonController
         ]);
     }
 
-
-    public function newAction(Request $request, EntityManagerInterface $em): Response
+    public function newAction(EntityManagerInterface $em): Response
     {
         $menuItem = new MenuItem();
-        $form = $this->createForm(MenuItemType::class, $menuItem);
-        $form->handleRequest($request);
+        $menuItem->setName('');
+        $menuItem->setLabel('');
+        $menuItem->setSortOrder(1);
+        $menuItem->setUrl('');
+        $menuItem->setType('blank');
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($menuItem);
-            $em->flush();
+        $em->persist($menuItem);
+        $em->flush();
 
-            return $this->redirectToRoute('mautic_menu_item_index');
-        }
-
-        return $this->delegateView([
-            'viewParameters'  => [
-                'action' => 'new',
-                'form'   => $form->createView(),
-            ],
-            'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
-        ]);
+        return $this->redirectToRoute('menuitem');
     }
 
     public function editAction(Request $request, int $id, EntityManagerInterface $em): Response
@@ -101,22 +93,6 @@ class MenuItemController extends CommonController
         ]);
     }
 
-    public function showAction(int $id, EntityManagerInterface $em): Response
-    {
-        $menuItem = $em->getRepository(MenuItem::class)->find($id);
-
-        if (!$menuItem) {
-            throw $this->createNotFoundException('MenuItem not found.');
-        }
-
-        return $this->delegateView([
-            'viewParameters'  => [
-                'action'    => 'show',
-                'menu_item' => $menuItem,
-            ],
-            'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
-        ]);
-    }
 
     public function deleteAction(Request $request, int $id, EntityManagerInterface $em): Response
     {

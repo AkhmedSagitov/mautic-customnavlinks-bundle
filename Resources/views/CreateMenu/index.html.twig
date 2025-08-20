@@ -6,6 +6,9 @@
 
     {{ form_start(form) }}
 
+
+        <a href="{{ path('createmenuitem') }}" class="btn btn-primary mb-8">Add</a>
+
         <div class="container">
             {% for item in form.vars.data %}
                 <div class="border-bottom py-3 mb-3">
