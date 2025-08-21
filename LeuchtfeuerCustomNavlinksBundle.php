@@ -16,10 +16,4 @@ class LeuchtfeuerCustomNavlinksBundle extends AbstractPluginBundle
         $container->addCompilerPass(new TwigFormThemePass());
     }
 
-    public function getJs()
-    {
-        return [
-            'plugins/YourPluginBundle/Assets/js/custom.js',
-        ];
-    }
 }

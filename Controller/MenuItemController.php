@@ -2,57 +2,82 @@
 
 namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller;
 
-
-use Doctrine\ORM\EntityManagerInterface;
 use Mautic\CoreBundle\Controller\CommonController;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Entity\MenuItem;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Entity\MenuItemRepository;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Form\Type\MenuItemType;
+use Mautic\IntegrationsBundle\Helper\IntegrationsHelper;
+use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\CustomNavlinksIntegration;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MenuItemController extends CommonController
 {
-    public function indexAction(Request $request, EntityManagerInterface $em, MenuItemRepository $menuItemRepository): Response
-    {
-        $menuItems = $menuItemRepository->findAll();
 
-        $form = $this->createFormBuilder($menuItems)
-            ->getForm();
+    public function indexAction(IntegrationsHelper $integrationsHelper): Response
+     {
+         $items = $integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration()->getFeatureSettings();
 
-        if ($request->isMethod('POST')) {
+         return $this->delegateView([
+             'viewParameters'  => [
+                 'items' => $items,
+             ],
+             'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
+         ]);
+     }
 
-            $itemsData = $request->request->get('items', []);
 
-            foreach ($itemsData as $id => $data) {
-
-                $item = $em->getRepository(MenuItem::class)->find($id);
-
-                if ($item) {
-                    $item->setName($data['name']);
-                   // $item->setLabel($data['label']);
-                    $item->setSortOrder((int)$data['sortOrder']);
-                    $item->setUrl($data['url']);
-                    $item->setType($data['type']);
-
-                    $em->persist($item);
-                }
+     public function saveAction(Request $request, IntegrationsHelper $integrationsHelper): Response
+        {
+            if ($request->isMethod('POST')) {
+                $itemsData = $request->request->get('items', []);
+                $integrationEntity = $integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
+                $integrationEntity->setFeatureSettings($itemsData);
+                $integrationsHelper->saveIntegrationConfiguration($integrationEntity);
             }
 
-            $em->flush();
 
-            return $this->redirectToRoute('menuitem');
+            return $this->json(['status' => 'success']);
         }
 
-        return $this->delegateView([
-            'viewParameters'  => [
-                'form' => $form->createView(),
-            ],
-            'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
-        ]);
-    }
 
-    public function newAction(EntityManagerInterface $em): Response
+       /* public function indexAction(Request $request, EntityManagerInterface $em, MenuItemRepository $menuItemRepository): Response
+        {
+            $menuItems = $menuItemRepository->findAll();
+
+            $form = $this->createFormBuilder($menuItems)
+                ->getForm();
+
+            if ($request->isMethod('POST')) {
+
+                $itemsData = $request->request->get('items', []);
+
+                foreach ($itemsData as $id => $data) {
+
+                    $item = $em->getRepository(MenuItem::class)->find($id);
+
+                    if ($item) {
+                        $item->setName($data['name']);
+                       // $item->setLabel($data['label']);
+                        $item->setSortOrder((int)$data['sortOrder']);
+                        $item->setUrl($data['url']);
+                        $item->setType($data['type']);
+
+                        $em->persist($item);
+                    }
+                }
+
+                $em->flush();
+
+                return $this->redirectToRoute('menuitem');
+            }
+
+            return $this->delegateView([
+                'viewParameters'  => [
+                    'form' => $form->createView(),
+                ],
+                'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
+            ]);
+        }*/
+
+/*    public function newAction(EntityManagerInterface $em): Response
     {
         $menuItem = new MenuItem();
         $menuItem->setName('');
@@ -91,11 +116,15 @@ class MenuItemController extends CommonController
             ],
             'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
         ]);
-    }
+    }*/
 
 
-    public function deleteAction(int $id, EntityManagerInterface $em, MenuItemRepository $menuItemRepository): Response
+/*    public function deleteAction(int $id, EntityManagerInterface $em, MenuItemRepository $menuItemRepository, IntegrationsHelper $integrationsHelper): Response
     {
+        $integrationEntity = $integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
+        $integrationEntity->setFeatureSettings(['test']);
+        $integrationsHelper->saveIntegrationConfiguration($integrationEntity);
+
         $menuItem = $menuItemRepository->find($id);
 
         if (!$menuItem) {
@@ -105,5 +134,5 @@ class MenuItemController extends CommonController
             $em->flush();
 
         return $this->json(['status' => 'success']);
-    }
+    }*/
 }

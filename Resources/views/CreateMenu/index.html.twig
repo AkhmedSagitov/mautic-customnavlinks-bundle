@@ -4,43 +4,48 @@
 
 {% block content %}
 
-    {{ form_start(form) }}
+    <div data-leuchtfeuer-custom-navlinks-bundle-container>
 
-        <a href="{{ path('createmenuitem') }}" class="btn btn-primary mb-8" >Add</a>
+        <div data-save class="btn btn-primary mt-3">Speichern</div>
 
-        <div class="container">
-            {% for item in form.vars.data %}
-                <div class="input-group sortable-no-reorder mb-3 pb-3">
+        <span data-add  class="btn btn-primary mb-8" >Add</span>
 
-                        <div class="row g-0">
-                            <div class="col-md-4 pr-0 pl-0" style="display: flex; flex-direction: row; ">
-                                <span data-id="{{ item.id }}" class="input-group-addon preaddon" style="display: flex; justify-content: center; align-items: center; border-radius: 0;">x</span>
-                                <input type="text" class="form-control" name="items[{{ item.id }}][name]" placeholder="Name" value="{{ item.name }}" style="border-radius: 0;">
-                            </div>
-                            <div class="col-md-5 pr-0 pl-0">
-                                <input type="text" class="form-control" name="items[{{ item.id }}][url]" placeholder="URL" value="{{ item.url }}">
-                            </div>
-                            <div class="col-md-1 pr-0 pl-0">
-                                <input type="number" class="form-control" name="items[{{ item.id }}][sortOrder]" placeholder="Sort" value="{{ item.sortOrder }}">
-                            </div>
-                            <div class="col-md-2 pr-0 pl-0">
-                                <select class="form-control form-select" name="items[{{ item.id }}][type]">
-                                    <option value="blank" {% if item.type == 'blank' %}selected{% endif %}>Blank</option>
-                                    <option value="iFrame" {% if item.type == 'iFrame' %}selected{% endif %}>iFrame</option>
-                                </select>
-                            </div>
+        {% for item in items %}
+            <div class="input-group sortable-no-reorder mb-3 pb-3" data-index>
+                {% if item is defined and item is not empty and item.name is defined and item.url is defined and item.order is defined and item.type is defined %}
+                    <div class="row g-0" data-row>
+                        <div class="col-md-4 pr-0 pl-0" style="display: flex; flex-direction: row; ">
+                            <span data-delete class="input-group-addon preaddon" style="display: flex; justify-content: center; align-items: center; border-radius: 0;">x</span>
+                            <input data-name type="text" class="form-control"  placeholder="Name" value="{{ item.name }}" style="border-radius: 0;">
                         </div>
+                        <div class="col-md-4 pr-0 pl-0">
+                            <input data-url type="text" class="form-control"  placeholder="URL" value="{{ item.url }}">
+                        </div>
+                        <div class="col-md-2 pr-0 pl-0">
+                            <input data-order type="number" class="form-control"  placeholder="Sort" value="{{ item.order }}">
+                        </div>
+                        <div class="col-md-2 pr-0 pl-0">
+                            <select data-type class="form-control form-select" >
+                                <option value="blank" {% if item.type == 'blank' %}selected{% endif %}>Blank</option>
+                                <option value="iFrame" {% if item.type == 'iFrame' %}selected{% endif %}>iFrame</option>
+                            </select>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
 
-                </div>
-            {% endfor %}
-
-            <button type="submit" class="btn btn-primary mt-3">Speichern</button>
-        </div>
-
-    {{ form_end(form) }}
+    </div>
 
 {% endblock %}
 
 
 
+{#
+{% extends '@MauticCore/Default/content.html.twig' %}
 
+{% block headerTitle %}{% endblock %}
+
+{% block content %}
+
+{% endblock %}#}
