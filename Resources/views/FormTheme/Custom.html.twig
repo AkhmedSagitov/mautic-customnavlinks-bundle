@@ -1,17 +1,22 @@
 {% block feature_settings_row %}
     <div id="menu-container"></div>
 
-    <script>
+    <script >
         fetch('/s/menuitem')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.text(); // get response as text
+                return response.text();
             })
             .then(html => {
                 const container = document.getElementById('menu-container');
-                container.innerHTML = html; // insert HTML directly
+                container.innerHTML = html;
+                const menuItemcontainer = document.querySelector('[data-leuchtfeuer-custom-navlinks-bundle-container]');
+
+                if (container) {
+                    setTimeout(() => eventListener(menuItemcontainer), 300);
+                }
             })
             .catch(error => {
                 console.error('Fetch error:', error);

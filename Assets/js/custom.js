@@ -1,4 +1,3 @@
-
     function saveMenuItem(container) {
 
         const rows = container.querySelectorAll('[data-row]');
@@ -44,7 +43,13 @@
 
         const element = container.querySelector('[data-add]')
         const deleteButtons = container.querySelectorAll('[data-delete]')
-        const saveButton = container.querySelector('[data-save]');
+        const saveButtonContainer = document.querySelector('.modal-form-buttons');
+        const applyButton = saveButtonContainer.querySelector('.btn-apply');
+        const saveButton = saveButtonContainer.querySelector('.btn-save');
+
+        applyButton.addEventListener('click', function () {
+            saveMenuItem(container)
+        });
 
         saveButton.addEventListener('click', function () {
             saveMenuItem(container)
@@ -89,14 +94,4 @@
             deleteButton = newItem.querySelector('[data-delete]');
 
             addEventListenerDeleteButton(deleteButton);
-        }
-
-
-
-window.addEventListener('load', () => {
-    const container = document.querySelector('[data-leuchtfeuer-custom-navlinks-bundle-container]');
-
-    if (container) {
-        setTimeout(() => eventListener(container), 300);
     }
-});
