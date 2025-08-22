@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\EventSubscriber\MenuEventSubscriber;
+use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\Config;
 use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\CustomNavlinksIntegration;
 use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\Support\ConfigSupport;
 
@@ -25,18 +27,6 @@ return [
                 'tags'  => [
                     'mautic.config_integration',
                 ],
-            ],
-        ],
-    ],
-    'menu' => [
-        'admin' => [
-            'mautic.menuItem' => [
-                'route'     => 'menuitem',
-                'label'     => 'Menu item',
-                'parent'    => 'mautic.core.general',
-                'priority'  => 60,
-                'iconClass' => 'fa fa-link',
-                'access'    => 'admin',
             ],
         ],
     ],
