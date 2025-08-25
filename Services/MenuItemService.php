@@ -6,6 +6,7 @@ class MenuItemService
 {
 
     public function buildArrayForMenuItem(array $menuItems) {
+
         $map = [];
 
             foreach($menuItems as $key => $item) {

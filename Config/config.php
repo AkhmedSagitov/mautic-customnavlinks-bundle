@@ -36,14 +36,6 @@ return [
                 'path'       => '/menuitem',
                 'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::indexAction'
             ],
-            'createmenuitem' => [
-                'path'       => '/createmenuitem',
-                'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::newAction',
-            ],
-            'deletemenuitem' => [
-                'path'       => '/deletemenuitem{id}',
-                'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::deleteAction',
-            ],
             'savemenuitem' => [
                 'path'       => '/savemenuitem',
                 'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::saveAction',
