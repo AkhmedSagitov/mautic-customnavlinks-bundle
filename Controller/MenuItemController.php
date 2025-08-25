@@ -27,7 +27,15 @@ class MenuItemController extends CommonController
      public function saveAction(Request $request, IntegrationsHelper $integrationsHelper): Response
     {
         if ($request->isMethod('POST')) {
+
             $itemsData = $request->request->get('items', []);
+
+            if (is_array($itemsData)) {
+                usort($itemsData, function($a, $b) {
+                    return $a['order'] <=> $b['order'];
+                });
+            }
+
             $integrationEntity = $integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
             $integrationEntity->setFeatureSettings($itemsData);
             $integrationsHelper->saveIntegrationConfiguration($integrationEntity);

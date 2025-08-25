@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\EventSubscriber\MenuEventSubscriber;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\Config;
 use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\CustomNavlinksIntegration;
 use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\Support\ConfigSupport;
 

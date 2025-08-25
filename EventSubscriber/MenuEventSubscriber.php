@@ -24,13 +24,14 @@ class MenuEventSubscriber implements EventSubscriberInterface
 
     public function onBuildMenu(MenuEvent $event)
     {
-        $integrationConfiguration = $this->integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
 
-        if ($event->getType() == 'main' && $integrationConfiguration->getIsPublished()) {
-            $event->addMenuItems(
-                $this->menuItemService->buildArrayForMenuItem($integrationConfiguration->getFeatureSettings())
-            );
+        if ($event->getType() == 'main') {
 
+            $integrationConfiguration = $this->integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
+
+            if($integrationConfiguration->getIsPublished()) {
+                  $this->menuItemService->processMenuItems($integrationConfiguration->getFeatureSettings(), $event);
+            }
         }
     }
 }
