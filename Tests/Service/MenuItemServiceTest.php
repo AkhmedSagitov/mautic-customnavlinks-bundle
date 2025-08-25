@@ -12,7 +12,7 @@ class MenuItemServiceTest extends TestCase
     public function testcheckIfWeGetCorrectMenuItemArray() {
 
         $service = new MenuItemService();
-        $this->assertEquals($this->getAwaitedResult(), $service->buildArrayForMenuItem($this->getArray(),  $service->getListPriorityOfMenuItems($this->getMenuItemsArray())));
+        $this->assertEquals($this->getAwaitedResult(), $service->buildArrayForMenuItem($this->getArray(),  1));
     }
 
     public function testIfWeGetPriorityListOfMuneItems()
@@ -26,27 +26,19 @@ class MenuItemServiceTest extends TestCase
 
     public function getArray()
     {
-        return [
+        return
             [
                 "name"  => "Test name",
                 "url"   => "wwww.test.com",
                 "order" => 1,
                 "type"  => "_blank",
-            ],
-            [
-                "name"  => "Test name2",
-                "url"   => "wwww.test.com2",
-                "order" => 2,
-                "type"  => "_blank",
-            ],
-            "integration" => [],
-        ];
+            ];
     }
 
     public function getAwaitedResult(){
         return  [
-            'plugin.custom.navlinks.testname' => [
-                'id'        => 'plugin.custom.navlinks.testname',
+            'plugin.custom.menuitems.testname' => [
+                'id'        => 'plugin.custom.menuitems.testname',
                 'uri'     => 'wwww.test.com',
                 'access'    => 'admin',
                 'label'     => 'Test name',
@@ -57,18 +49,6 @@ class MenuItemServiceTest extends TestCase
                 ],
                 'priority' => 1,
             ],
-            'plugin.custom.navlinks.testname2' => [
-                'id'        => 'plugin.custom.navlinks.testname2',
-                'uri'     => 'wwww.test.com2',
-                'access'    => 'admin',
-                'label'     => 'Test name2',
-                'iconClass' => 'ri-external-link-line',
-                'linkAttributes' => [
-                    'target' => '_blank',
-                    'rel'    => 'noopener noreferrer'
-                ],
-                'priority' => 2,
-            ]
         ];
     }
 
