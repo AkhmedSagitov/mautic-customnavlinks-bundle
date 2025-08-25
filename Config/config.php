@@ -34,7 +34,7 @@ return [
         'main' => [
             'menuitem' => [
                 'path'       => '/menuitem',
-                'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::indexAction',
+                'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::indexAction'
             ],
             'createmenuitem' => [
                 'path'       => '/createmenuitem',

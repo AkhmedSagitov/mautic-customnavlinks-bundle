@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle;
 
+use Mautic\AssetBundle\Event\AssetEvent;
 use Mautic\IntegrationsBundle\Bundle\AbstractPluginBundle;
 use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\DependencyInjection\Compiler\TwigFormThemePass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -15,5 +16,6 @@ class LeuchtfeuerCustomNavlinksBundle extends AbstractPluginBundle
 
         $container->addCompilerPass(new TwigFormThemePass());
     }
+
 
 }

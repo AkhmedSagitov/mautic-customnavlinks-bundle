@@ -4,16 +4,17 @@ namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\EventSubscriber;
 
 use Mautic\CoreBundle\CoreEvents;
 use Mautic\CoreBundle\Event\MenuEvent;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\Config;
+use Mautic\IntegrationsBundle\Helper\IntegrationsHelper;
+use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\CustomNavlinksIntegration;
+use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Services\MenuItemService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class MenuEventSubscriber implements EventSubscriberInterface
 {
-    public function __construct(
-        private Config $config
-    ) {
-    }
+    public function __construct(private MenuItemService $menuItemService, private IntegrationsHelper $integrationsHelper)
+    {
 
+    }
     public static function getSubscribedEvents()
     {
         return [
@@ -23,16 +24,13 @@ class MenuEventSubscriber implements EventSubscriberInterface
 
     public function onBuildMenu(MenuEvent $event)
     {
-        $event->addMenuItems([
-            'items' => [
-                'plugin.helloworld.index2' => [
-                    'id'        => 'plugin_helloworld_index2',
-                    'route'     => 'menuitem',
-                    'access'    => 'admin',
-                    'label'     => 'Hello World dynamic',
-                    'iconClass' => 'fa-globe',
-                ],
-            ],
-        ]);
+        $integrationConfiguration = $this->integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
+
+        if ($event->getType() == 'main' && $integrationConfiguration->getIsPublished()) {
+            $event->addMenuItems(
+                $this->menuItemService->buildArrayForMenuItem($integrationConfiguration->getFeatureSettings())
+            );
+
+        }
     }
 }
