@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle;
+namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle;
 
-use Mautic\AssetBundle\Event\AssetEvent;
 use Mautic\IntegrationsBundle\Bundle\AbstractPluginBundle;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\DependencyInjection\Compiler\TwigFormThemePass;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\DependencyInjection\Compiler\TwigFormThemePass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-class LeuchtfeuerCustomNavlinksBundle extends AbstractPluginBundle
+class LeuchtfeuerCustomMenuItemsBundle extends AbstractPluginBundle
 {
    public function build(ContainerBuilder $container): void
     {

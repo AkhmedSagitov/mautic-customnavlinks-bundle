@@ -1,8 +1,8 @@
 <?php
 
-namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Tests\Service;
+namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Tests\Service;
 
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Services\MenuItemService;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Services\MenuItemService;
 use PHPUnit\Framework\TestCase;
 
 class MenuItemServiceTest extends TestCase

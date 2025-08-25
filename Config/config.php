@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\CustomNavlinksIntegration;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\Support\ConfigSupport;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomNavlinksIntegration;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\Support\ConfigSupport;
 
 
 return [

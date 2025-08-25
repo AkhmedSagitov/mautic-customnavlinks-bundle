@@ -1,10 +1,10 @@
 <?php
 
-namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller;
+namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Controller;
 
 use Mautic\CoreBundle\Controller\CommonController;
 use Mautic\IntegrationsBundle\Helper\IntegrationsHelper;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\CustomNavlinksIntegration;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomNavlinksIntegration;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

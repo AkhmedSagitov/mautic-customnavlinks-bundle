@@ -1,6 +1,6 @@
 <?php
 
-namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Services;
+namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Services;
 
 use Mautic\CoreBundle\Event\MenuEvent;
 

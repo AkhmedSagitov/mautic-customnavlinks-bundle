@@ -1,9 +1,9 @@
 <?php
-namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\Support;
+namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\Support;
 
 use Mautic\IntegrationsBundle\Integration\DefaultConfigFormTrait;
 use Mautic\IntegrationsBundle\Integration\Interfaces\ConfigFormInterface;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\CustomNavlinksIntegration;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomNavlinksIntegration;
 
 class ConfigSupport extends CustomNavlinksIntegration implements ConfigFormInterface
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\EventSubscriber;
+namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\EventSubscriber;
 
 use Mautic\CoreBundle\CoreEvents;
 use Mautic\CoreBundle\Event\MenuEvent;
 use Mautic\IntegrationsBundle\Helper\IntegrationsHelper;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration\CustomNavlinksIntegration;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Services\MenuItemService;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomNavlinksIntegration;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Services\MenuItemService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class MenuEventSubscriber implements EventSubscriberInterface

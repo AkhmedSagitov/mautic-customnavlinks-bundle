@@ -1,12 +1,12 @@
 <?php
 
-namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Integration;
+namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration;
 
 use Mautic\IntegrationsBundle\Integration\BasicIntegration;
 use Mautic\IntegrationsBundle\Integration\ConfigurationTrait;
 use Mautic\IntegrationsBundle\Integration\Interfaces\BasicInterface;
 use Mautic\IntegrationsBundle\Integration\Interfaces\ConfigFormFeatureSettingsInterface;
-use MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Form\Type\FeatureSettingsType;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Form\Type\FeatureSettingsType;
 
 
 class CustomNavlinksIntegration extends BasicIntegration implements BasicInterface, ConfigFormFeatureSettingsInterface
@@ -28,7 +28,7 @@ class CustomNavlinksIntegration extends BasicIntegration implements BasicInterfa
 
     public function getIcon(): string
     {
-        return 'plugins/GrapesJsBuilderBundle/Assets/img/grapesjsbuilder.png';
+        return 'plugins/LeuchtfeuerCustomNavlinksBundle/Assets/icon/Leuchtfeuer-mautic-CustomMenuItems.png';
     }
 
     public function getFeatureSettingsConfigFormName(): string

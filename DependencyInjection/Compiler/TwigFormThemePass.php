@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\LeuchtfeuerCustomNavlinksBundle\DependencyInjection\Compiler;
+namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
