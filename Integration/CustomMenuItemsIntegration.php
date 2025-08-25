@@ -9,12 +9,12 @@ use Mautic\IntegrationsBundle\Integration\Interfaces\ConfigFormFeatureSettingsIn
 use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Form\Type\FeatureSettingsType;
 
 
-class CustomNavlinksIntegration extends BasicIntegration implements BasicInterface, ConfigFormFeatureSettingsInterface
+class CustomMenuItemsIntegration extends BasicIntegration implements BasicInterface, ConfigFormFeatureSettingsInterface
 {
     use ConfigurationTrait;
 
-    public const INTEGRATION_NAME = 'customnavlinks';
-    public const DISPLAY_NAME     = 'Custom Navlinks by Leuchtfeuer';
+    public const INTEGRATION_NAME = 'custommenuitems';
+    public const DISPLAY_NAME     = 'Custom Menu Items by Leuchtfeuer';
 
     public function getName(): string
     {
@@ -28,7 +28,7 @@ class CustomNavlinksIntegration extends BasicIntegration implements BasicInterfa
 
     public function getIcon(): string
     {
-        return 'plugins/LeuchtfeuerCustomNavlinksBundle/Assets/icon/Leuchtfeuer-mautic-CustomMenuItems.png';
+        return 'plugins/LeuchtfeuerCustomMenuItemsBundle/Assets/icon/Leuchtfeuer-mautic-CustomMenuItems.png';
     }
 
     public function getFeatureSettingsConfigFormName(): string

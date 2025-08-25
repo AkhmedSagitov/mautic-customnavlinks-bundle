@@ -14,6 +14,6 @@ return function (ContainerConfigurator $configurator): void {
 
     $excludes= [];
 
-    $services->load('MauticPlugin\\LeuchtfeuerCustomNavlinksBundle\\', '../')
+    $services->load('MauticPlugin\\LeuchtfeuerCustomMenuItemsBundle\\', '../')
         ->exclude('../{'.implode(',', array_merge(MauticCoreExtension::DEFAULT_EXCLUDES, $excludes)).'}');
 };

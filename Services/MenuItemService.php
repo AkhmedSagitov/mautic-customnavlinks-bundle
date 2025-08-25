@@ -11,8 +11,8 @@ class MenuItemService
 
         $map = [];
 
-            $map['plugin.custom.navlinks.' . strtolower(str_replace(' ','',$menuItem['name']))] = [
-                'id' => 'plugin.custom.navlinks.' . strtolower(str_replace(' ','',$menuItem['name'])),
+            $map['plugin.custom.menuitems.' . strtolower(str_replace(' ','',$menuItem['name']))] = [
+                'id' => 'plugin.custom.menuitems.' . strtolower(str_replace(' ','',$menuItem['name'])),
                 'uri' => $menuItem['url'],
                 'access' => 'admin',
                 'label' => $menuItem['name'],

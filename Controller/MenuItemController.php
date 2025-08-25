@@ -4,7 +4,7 @@ namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Controller;
 
 use Mautic\CoreBundle\Controller\CommonController;
 use Mautic\IntegrationsBundle\Helper\IntegrationsHelper;
-use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomNavlinksIntegration;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomMenuItemsIntegration;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -13,13 +13,13 @@ class MenuItemController extends CommonController
 
     public function indexAction(IntegrationsHelper $integrationsHelper): Response
      {
-         $items = $integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration()->getFeatureSettings();
+         $items = $integrationsHelper->getIntegration(CustomMenuItemsIntegration::INTEGRATION_NAME)->getIntegrationConfiguration()->getFeatureSettings();
 
          return $this->delegateView([
              'viewParameters'  => [
                  'items' => $items,
              ],
-             'contentTemplate' => '@LeuchtfeuerCustomNavlinks/CreateMenu/index.html.twig',
+             'contentTemplate' => '@LeuchtfeuerCustomMenuItems/CreateMenu/index.html.twig',
          ]);
      }
 
@@ -36,7 +36,7 @@ class MenuItemController extends CommonController
                 });
             }
 
-            $integrationEntity = $integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
+            $integrationEntity = $integrationsHelper->getIntegration(CustomMenuItemsIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
             $integrationEntity->setFeatureSettings($itemsData);
             $integrationsHelper->saveIntegrationConfiguration($integrationEntity);
         }

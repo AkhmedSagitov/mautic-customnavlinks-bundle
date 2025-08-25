@@ -7,6 +7,7 @@ namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle;
 use Mautic\IntegrationsBundle\Bundle\AbstractPluginBundle;
 use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\DependencyInjection\Compiler\TwigFormThemePass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 class LeuchtfeuerCustomMenuItemsBundle extends AbstractPluginBundle
 {
    public function build(ContainerBuilder $container): void

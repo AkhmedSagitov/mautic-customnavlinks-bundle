@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomNavlinksIntegration;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomMenuItemsIntegration;
 use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\Support\ConfigSupport;
 
 
 return [
-    'name'        => 'Custom Navlinks by Leuchtfeuer',
-    'description' => 'Custom Navlinks by Leuchtfeuer',
+    'name'        => 'Custom Menu Items by Leuchtfeuer',
+    'description' => 'Custom Menu Items by Leuchtfeuer',
     'version'     => '1.0.0',
     'author'      => 'Leuchtfeuer Digital Marketing GmbH',
     'services'    => [
         'integrations' => [
-            'mautic.integration.customnavlinks' => [
-                'class' => CustomNavlinksIntegration::class,
+            'mautic.integration.custommenuitems' => [
+                'class' => CustomMenuItemsIntegration::class,
                 'tags'  => [
                     'mautic.integration',
                     'mautic.basic_integration',
                 ],
             ],
-            'mautic.integration.customnavlinks.configuration' => [
+            'mautic.integration.custommenuitems.configuration' => [
                 'class' => ConfigSupport::class,
                 'tags'  => [
                     'mautic.config_integration',
@@ -32,11 +32,11 @@ return [
         'main' => [
             'menuitem' => [
                 'path'       => '/menuitem',
-                'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::indexAction'
+                'controller' => 'MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Controller\MenuItemController::indexAction'
             ],
             'savemenuitem' => [
                 'path'       => '/savemenuitem',
-                'controller' => 'MauticPlugin\LeuchtfeuerCustomNavlinksBundle\Controller\MenuItemController::saveAction',
+                'controller' => 'MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Controller\MenuItemController::saveAction',
             ],
         ],
     ],

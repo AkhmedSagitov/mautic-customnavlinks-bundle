@@ -5,7 +5,7 @@ namespace MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\EventSubscriber;
 use Mautic\CoreBundle\CoreEvents;
 use Mautic\CoreBundle\Event\MenuEvent;
 use Mautic\IntegrationsBundle\Helper\IntegrationsHelper;
-use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomNavlinksIntegration;
+use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Integration\CustomMenuItemsIntegration;
 use MauticPlugin\LeuchtfeuerCustomMenuItemsBundle\Services\MenuItemService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -27,7 +27,7 @@ class MenuEventSubscriber implements EventSubscriberInterface
 
         if ($event->getType() == 'main') {
 
-            $integrationConfiguration = $this->integrationsHelper->getIntegration(CustomNavlinksIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
+            $integrationConfiguration = $this->integrationsHelper->getIntegration(CustomMenuItemsIntegration::INTEGRATION_NAME)->getIntegrationConfiguration();
 
             if($integrationConfiguration->getIsPublished()) {
                   $this->menuItemService->processMenuItems($integrationConfiguration->getFeatureSettings(), $event);

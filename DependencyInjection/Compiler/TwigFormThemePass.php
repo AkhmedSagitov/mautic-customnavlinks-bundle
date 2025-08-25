@@ -21,7 +21,7 @@ class TwigFormThemePass implements CompilerPassInterface
             throw new \LogicException('Container parameter "twig.form.resources" must be an array.');
         }
 
-        $formThemes[] = '@LeuchtfeuerCustomNavlinks/FormTheme/Custom.html.twig';
+        $formThemes[] = '@LeuchtfeuerCustomMenuItems/FormTheme/Custom.html.twig';
 
         $container->setParameter('twig.form.resources', $formThemes);
     }
